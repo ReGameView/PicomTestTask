@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Carbon\Carbon;
 
-class CreateTableHistory extends Migration
+class CreateTableResult extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,11 @@ class CreateTableHistory extends Migration
      */
     public function up()
     {
-        Schema::create('history', function (Blueprint $table) {
+        Schema::create('result', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('search');
-            $table->timestamp('created_at');
+            $table->string('history_id');
+            $table->string('country_id');
+            $table->string('percents')->defaul('0%');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateTableHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('history');
+        Schema::dropIfExists('result');
     }
 }

@@ -7,6 +7,10 @@ $(document).ready(function () {
             url: 'ajax',
             data: $('#searchForm').serialize(),
             success: function (data) {
+                let msg = "";
+                data.forEach(function(item){
+                    msg = msg + "<img src='" + item.img + "'> " + item.name + " " + item.percents + "%<br/>";
+                });
                 let result = document.querySelector('div.result');
                 result.classList.remove("alert-success");
                 result.classList.remove("alert-warning");
@@ -15,7 +19,7 @@ $(document).ready(function () {
                     result.innerHTML = 'ERROR: Слишком длинный запрос. Ограничение до 255 символов';
                 }else {
                     result.classList.add('alert-success');
-                    result.innerHTML = data;
+                    result.innerHTML = msg;
                 }
                 result.style.border = "1px solid gray";
                 result.style.height = "auto";

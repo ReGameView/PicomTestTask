@@ -24,10 +24,15 @@ if(empty($title)) {
     <tbody>
         @foreach($history as $item)
             <tr>
-                <td scope="row">{{ $id ? $item['id'] : $loop->iteration }}</td>
-                <td>{{ $item['search'] }}</td>
-                <td>{!! $item['result'] !!}</td>
-                <td>{{ $item['created_at'] }}</td>
+                <td scope="row">{{ $id ? $item->id : $loop->iteration }}</td>
+                <td>{{ $item->search }}</td>
+                <td>
+                    @foreach($item->country as $country)
+                        <img src="{{ asset('img/country/'. $country->short_name .'.png') }}">
+                        {{ $country->name }}<br/>
+                    @endforeach
+                </td>
+                <td>{{ $item->created_at }}</td>
             </tr>
         @endforeach
     </tbody>
