@@ -14,7 +14,3 @@
 Route::get('/', 'MainController@index');
 Route::post('ajax', 'MainController@ajax');
 Route::get('/history', 'MainController@history');
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});

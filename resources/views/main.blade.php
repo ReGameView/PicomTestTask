@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <title>
-        Picom | Техническое Задание
-    </title>
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css')  }}">
-</head>
-<body>
-    <form id="searchForm" method="POST">
-        {{ csrf_field() }}
-        <input type="text" name="search" placeholder="Pls write text" required>
-        <button type="submit">Search!</button>
-    </form>
+@extends('helper.design')
+@section('content')
+<div class="row">
+    <div class="col-sm-12">
+        <form id="searchForm" method="POST">
+            {{ csrf_field() }}
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control" placeholder="Pls write text" aria-describedby="button-addon2" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
 
-    <div class="result">
-
+        <div class="result alert alert-success" role="alert"></div>
+        @include('helper.table', ['history' => $history, 'title' => 'Последние 10 запросов'])
+        @if($history->count() >= 10)
+            <a href="{{ url('/history') }}">Посмотреть всю историю</a>
+        @endif
     </div>
-
-    <h2>Последние 10 запросов</h2>
-    @include('table', ['history' => $history])
-    @if($history->count() >= 10)
-        <a href="{{ url('/history') }}">Посмотреть всю историю</a>
-    @endif
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-</body>
-</html>
+</div>
+<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+@endsection

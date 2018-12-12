@@ -17,9 +17,7 @@ div.result {
     transition: 0.5s;
 }
 
-table {
-    width: 100%;
-}
-tr, th, td {
-    border: 1px solid black;
+img {
+    width: 32px;
+    height: 32px;
 }

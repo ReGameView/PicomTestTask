@@ -8,11 +8,17 @@ $(document).ready(function () {
             data: $('#searchForm').serialize(),
             success: function (data) {
                 let result = document.querySelector('div.result');
-                // result.innerHTML = "";
-                result.style.background = 'lightgreen';
+                result.classList.remove("alert-success");
+                result.classList.remove("alert-warning");
+                if(data === '1') {
+                    result.classList.add('alert-warning');
+                    result.innerHTML = 'ERROR: Слишком длинный запрос. Ограничение до 255 символов';
+                }else {
+                    result.classList.add('alert-success');
+                    result.innerHTML = data;
+                }
                 result.style.border = "1px solid gray";
-                result.style.height = "200px";
-                result.innerHTML = data;
+                result.style.height = "auto";
             }
         })
     })
