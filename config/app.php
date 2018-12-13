@@ -2,6 +2,8 @@
 
 return [
 
+    'keyForApi' => env('keyForApi','d885c4fec83adc755c57e7b04c5c6c33'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -177,6 +179,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Custom Service Providers...
+         */
+//        App\Providers\ApiServiceProvider::class,
     ],
 
     /*

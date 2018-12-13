@@ -1,7 +1,10 @@
 $(document).ready(function () {
     $('#searchForm').on('submit', function (e) {
         e.preventDefault();
-
+        let result = document.querySelector('div.result');
+        result.classList.remove("alert-success");
+        result.classList.remove("alert-danger");
+        result.innerHTML = "";
         $.ajax({
             type: 'POST',
             url: 'ajax',
@@ -11,19 +14,18 @@ $(document).ready(function () {
                 data.forEach(function(item){
                     msg = msg + "<img src='" + item.img + "'> " + item.name + " " + item.percents + "%<br/>";
                 });
-                let result = document.querySelector('div.result');
-                result.classList.remove("alert-success");
-                result.classList.remove("alert-warning");
-                if(data === '1') {
-                    result.classList.add('alert-warning');
-                    result.innerHTML = 'ERROR: Слишком длинный запрос. Ограничение до 255 символов';
-                }else {
-                    result.classList.add('alert-success');
-                    result.innerHTML = msg;
+                result.classList.add('alert-success');
+                result.innerHTML = msg;
+            },
+            statusCode: {
+                422:    function (data) {
+                    // Т.к. валидация только на максимум символов, не будем парсить json, сразу покажем кто тут батя
+                    result.classList.add('alert-danger');
+                    result.innerText = 'Введено слишком большой текст. Максимум: 255';
                 }
-                result.style.border = "1px solid gray";
-                result.style.height = "auto";
             }
-        })
+        });
+        result.style.border = "1px solid gray";
+        result.style.height = "auto";
     })
 });

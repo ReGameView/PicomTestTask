@@ -29,7 +29,7 @@ if(empty($title)) {
                 <td>
                     @foreach($item->country as $country)
                         <img src="{{ asset('img/country/'. $country->short_name .'.png') }}">
-                        {{ $country->name }}<br/>
+                        {{ $country->name }} {{ $country->percents }}<br/>
                     @endforeach
                 </td>
                 <td>{{ $item->created_at }}</td>

@@ -12,7 +12,7 @@
             </div>
         </form>
 
-        <div class="result alert alert-success" role="alert"></div>
+        <div class="result alert" role="alert"></div>
         @include('helper.table', ['history' => $history, 'title' => 'Последние 10 запросов'])
         @if($history->count() >= 10)
             <a href="{{ url('/history') }}">Посмотреть всю историю</a>
