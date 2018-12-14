@@ -28,7 +28,7 @@ class LanguageDetectorService
         $response = $request ? $request->getBody() : null;
         $status = $request ? $request->getStatusCode() : Response::HTTP_INTERNAL_SERVER_ERROR;
 
-        if($response && $status == 200 && $response !== null) {
+        if($response && $status == Response::HTTP_OK && $response !== null) {
             return (object) json_decode($response);
         }
 
