@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Result extends Model
 
     public function Country()
     {
-        return $this->hasOne('App\Country');
+        return $this->hasOne('App\Models\Country');
     }
 }

@@ -1,9 +1,6 @@
 <?php
 
 return [
-
-    'keyForApi' => env('keyForApi','d885c4fec83adc755c57e7b04c5c6c33'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Name

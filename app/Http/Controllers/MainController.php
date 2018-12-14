@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\ApiServiceProvider;
-use Validator;
-use Illuminate\Http\Request;
-use App\History;
-use App\Result;
-use App\Country;
+use App\Services\LanguageDetectorService;
+use App\Models\History;
+use App\Models\Result;
+use App\Models\Country;
 use App\Http\Requests\MainInputRequest;
-use App\Providers\ApiServiceProvider as Api;
 
-use GuzzleHttp\Client; // IoC
+use GuzzleHttp\Client;
 
 
 class MainController extends Controller
@@ -28,8 +25,8 @@ class MainController extends Controller
 
     public function ajax(MainInputRequest $request)
     {
-
-        $api = new ApiServiceProvider();
+        $client = New Client();
+        $api = new LanguageDetectorService($client);
         $data = $api->getApi($request->search);
 
         $json_data = [];
@@ -37,7 +34,6 @@ class MainController extends Controller
         $history = new History();
         $history->search = $request->search;
         $history->save();
-
         foreach($data->results as $item) {
             $country = Country::where('name', $item->language_name)->first();
 

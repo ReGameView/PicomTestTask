@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class History extends Model
 
     public function result()
     {
-        return $this->hasMany('App\Result');
+        return $this->hasMany('App\Models\Result');
     }
 
     public function country()
     {
-        return $this->belongsToMany('App\Country', 'result')->withPivot('percents');
+        return $this->belongsToMany('App\Models\Country', 'result')->withPivot('percents');
     }
 }
