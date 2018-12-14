@@ -23,10 +23,8 @@ class MainController extends Controller
         return view('main', ['history' => $history]);
     }
 
-    public function ajax(MainInputRequest $request)
+    public function ajax(MainInputRequest $request, LanguageDetectorService $api)
     {
-        $client = New Client();
-        $api = new LanguageDetectorService($client);
         $data = $api->getApi($request->search);
 
         $json_data = [];
